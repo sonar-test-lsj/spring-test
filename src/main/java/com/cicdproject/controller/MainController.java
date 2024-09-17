@@ -1,37 +1,30 @@
 package com.cicdproject.controller;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
-
-@RestController
+@Controller
 public class MainController {
 
-	@GetMapping("/hello")
-	public String helloWorld(){
-		return "CICD test";
-	}
 
-//	@GetMapping("/")
-//	@ResponseStatus(HttpStatus.OK)
-//	public String index(){
-//
-//		try {
-//
-//			// 서버의 호스트 이름과 IP 주소를 가져옴
-//			InetAddress inetAddress = InetAddress.getLocalHost();
-//			String serverIp = inetAddress.getHostAddress(); // 서버의 IP 주소
-//			return "Server IP Address: " + serverIp;
-//		} catch (UnknownHostException e) {
-//			return "Unable to retrieve server IP address";
-//		}
-//
-//	}
+    private final RestTemplate restTemplate;
+
+    public MainController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    @GetMapping("/hello")
+    public String helloWorld(Model model) {
+
+        ResponseEntity<String> entity = restTemplate.getForEntity("http://internal-be-be-be-be-be-be-1-353624958.ap-northeast-2.elb.amazonaws.com:8081/", String.class);
+
+        model.addAttribute("message", entity.getBody());
+
+        return "ci-cd";
+    }
 
 
 }
