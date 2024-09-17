@@ -20,6 +20,7 @@ public class MainController {
 
 
 		try {
+
 			// 서버의 호스트 이름과 IP 주소를 가져옴
 			InetAddress inetAddress = InetAddress.getLocalHost();
 			String serverIp = inetAddress.getHostAddress(); // 서버의 IP 주소
