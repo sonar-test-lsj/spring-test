@@ -12,11 +12,14 @@ env:
   DEPLOYMENT_GROUP_NAME: cicdapp_deploy
 
 jobs:
-  build:
-    runs-on: ubuntu-18.04
+  build-with-gradle:
+    runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      # 1. Compare branch 코드 내려 받기
+      - name: Checkout PR
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.push.base_ref }}
         
       - name: JDK 17 설치
         uses: actions/setup-java@v3
