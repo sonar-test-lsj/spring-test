@@ -8,8 +8,8 @@ on:
 env:
   PROJECT_NAME: cicd_project
   BUCKET_NAME: lsj-cicd-bucket
-  CODE_DEPLOY_APP_NAME: cicdapp
-  DEPLOYMENT_GROUP_NAME: cicdapp_deploy
+  CODE_DEPLOY_APP_NAME: cicdapp2
+  DEPLOYMENT_GROUP_NAME: cicdapp_deploy2
 
 jobs:
   build-with-gradle:
